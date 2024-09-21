@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background-color: white; /* Set white background for the page */
+        }
+        .carousel-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            width: 100vw; /* Full viewport width */
+            overflow: hidden;
+        }
+        .carousel {
+            display: flex;
+            width: 700%; /* Adjust based on the number of items */
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            min-width: 100vw; /* Make sure each item takes full viewport width */
+            height: 100vh; /* Full height of viewport */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: white; /* White background for each slide */
+        }
+        .qr-icon {
+            margin-bottom: 20px; /* Adds space between icon and QR code */
+            width: 50px; /* Adjust size of the SVG icon */
+            height: 50px;
+        }
+        .qr-container {
+            background-color: white;
+            padding: 20px; /* Adds margin between QR code and border */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        img.qr-code {
+            max-width: 300px;
+            max-height: 300px;
+        }
+        .address {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: #333;
+            cursor: pointer;
+            user-select: none;
+            z-index: 1;
+        }
+        .arrow.left {
+            left: 20px;
+        }
+        .arrow.right {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="carousel-container">
+    <div class="carousel" id="carousel">
+        <div class="carousel-item">
+            <!-- SVG Icon as an external image -->
+            <img class="qr-icon" src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=035" alt="bitcoin">
+            <div class="qr-container">
+                <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=Address1" alt="QR Code 1">
+            </div>
+            <div class="address">bc1qx7clf2lsp5n9gp8h90x04rrwns5jrh68vwu9zl</div>
+            <button onclick="copyAddress('bc1qx7clf2lsp5n9gp8h90x04rrwns5jrh68vwu9zl')">Copy Address</button>
+        </div>
+        <div class="carousel-item">
+            <!-- SVG Icon as an external image -->
+            <img class="qr-icon" src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=035" alt="ethereum">
+            <div class="qr-container">
+                <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=Address2" alt="QR Code 2">
+            </div>
+            <div class="address">0x4C246C8D3Ed18182E0169E1AcDB932c80d32f2bd</div>
+            <button onclick="copyAddress('0x4C246C8D3Ed18182E0169E1AcDB932c80d32f2bd')">Copy Address</button>
+        </div>
+        <div class="carousel-item">
+            <!-- SVG Icon as an external image -->
+            <img class="qr-icon" src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=035" alt="usdt">
+            <div class="qr-container">
+                <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=Address3" alt="QR Code 3">
+            </div>
+            <div class="address">TRC-20 :
+                TCW1UqTwjCt2cWR5hUdNcNhecMWRRjaRqP</div>
+            <button onclick="copyAddress('TCW1UqTwjCt2cWR5hUdNcNhecMWRRjaRqP')">Copy Address</button>
+        </div>
+        <div class="carousel-item">
+            <!-- SVG Icon as an external image -->
+            <img class="qr-icon" src="https://cryptologos.cc/logos/litecoin-ltc-logo.png?v=035" alt="litecoin">
+            <div class="qr-container">
+                <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=Address4" alt="QR Code 4">
+            </div>
+            <div class="address">ltc1qtuvwcra20shxaz555v7jcrl540a6qfyhpkwccw</div>
+            <button onclick="copyAddress('ltc1qtuvwcra20shxaz555v7jcrl540a6qfyhpkwccw')">Copy Address</button>
+        </div>
+        <div class="carousel-item">
+            <!-- SVG Icon as an external image -->
+            <img class="qr-icon" src="https://cryptologos.cc/logos/usd-coin-usdc-logo.png?v=035" alt="usdc">
+            <div class="qr-container">
+                <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=Address5" alt="QR Code 5">
+            </div>
+            <div class="address">0xF844d07b314383E2dB195C065587311F3dd65220</div>
+            <button onclick="copyAddress('0xF844d07b314383E2dB195C065587311F3dd65220')">Copy Address</button>
+        </div>
+        <div class="carousel-item">
+            <!-- SVG Icon as an external image -->
+            <img class="qr-icon" src="https://cryptologos.cc/logos/solana-sol-logo.png?v=035" alt="Solana">
+            <div class="qr-container">
+                <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=Address6" alt="QR Code 6">
+            </div>
+            <div class="address">86mZTxa4SswKuRDa581VEp6YkD2x9QDTaLvyASBTGGXb</div>
+            <button onclick="copyAddress('86mZTxa4SswKuRDa581VEp6YkD2x9QDTaLvyASBTGGXb')">Copy Address</button>
+        </div>
+        <div class="carousel-item">
+            <!-- SVG Icon as an external image -->
+            <img class="qr-icon" src="https://cryptologos.cc/logos/monero-xmr-logo.png?v=035" alt="monero">
+            <div class="qr-container">
+                <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=Address7" alt="QR Code 7">
+            </div>
+            <div class="address">443WY9QFRzNNLvuET8V1Qd8wYsYoZNhSr7dUAcewRDu7Vayg4LPgbUv34dWKmspCbujYSckRV5iS7QWNyMLqqcXaKP5figx</div>
+            <button onclick="copyAddress('443WY9QFRzNNLvuET8V1Qd8wYsYoZNhSr7dUAcewRDu7Vayg4LPgbUv34dWKmspCbujYSckRV5iS7QWNyMLqqcXaKP5figx')">Copy Address</button>
+        </div>
+    </div>
+
+    <div class="arrow left" onclick="prevSlide()">&#10094;</div>
+    <div class="arrow right" onclick="nextSlide()">&#10095;</div>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const totalItems = document.querySelectorAll('.carousel-item').length;
+    const carousel = document.getElementById('carousel');
+
+    function showSlide(index) {
+        if (index >= totalItems) {
+            currentIndex = 0; // Loop back to the first slide
+        } else if (index < 0) {
+            currentIndex = totalItems - 1; // Go to the last slide
+        } else {
+            currentIndex = index;
+        }
+        const offset = -currentIndex * 100;
+        carousel.style.transform = `translateX(${offset}vw)`; // Use viewport width (vw) for accurate positioning
+    }
+
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
+
+    function copyAddress(address) {
+        const tempInput = document.createElement('input');
+        tempInput.value = address;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        alert('Address copied: ' + address);
+    }
+
+    // Optional: Add keyboard navigation (left/right arrows)
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight') {
+            nextSlide();
+        } else if (event.key === 'ArrowLeft') {
+            prevSlide();
+        }
+    });
+</script>
+
+</body>
+</html>
